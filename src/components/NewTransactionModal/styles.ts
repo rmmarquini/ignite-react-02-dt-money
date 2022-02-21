@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { darken } from 'polished'
+import { darken, transparentize } from 'polished'
 
 export const Container = styled.form`
 
@@ -56,35 +56,56 @@ export const TransactionTypeContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: .5rem;
 
-  button {
-    height: 4rem;
-    border: 1px solid #d7d7d7;
-    border-radius: 0.25rem;
+`
 
-    background: transparent;
+/**
+ * Using props to define styles through an object state.
+ * So the interface RadioBoxProps stores the two props 
+ * to enable the functionality of which button is active
+ * and then set the correct background color as mapped
+ * on the colors object.
+ */
+interface RadioBoxProps {
+  isActive: boolean;
+  activeColor: 'green' | 'red';
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 0 4.5rem;
+const colors = {
+  green: '#33cc95',
+  red: '#e52e4d'
+}
 
-    transition: border-color ease .2s;
+export const RadioBox = styled.button<RadioBoxProps>`
 
-    &:hover {
-      border-color: ${darken(0.15, '#d7d7d7')}
-    }
+  height: 4rem;
+  border: 1px solid #d7d7d7;
+  border-radius: 0.25rem;
 
-    img {
-      width: 24px;
-      height: 24px;
-    }
+  background: ${(props) => props.isActive
+    ? transparentize(0.85, colors[props.activeColor])
+    : 'transparent'
+  };
 
-    span {
-      display: inline-block;
-      font-size: 1rem;
-      color: var(--text-title);
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 4.5rem;
 
+  transition: border-color ease .2s;
+
+  &:hover {
+    border-color: ${darken(0.15, '#d7d7d7')}
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  span {
+    display: inline-block;
+    font-size: 1rem;
+    color: var(--text-title);
   }
 
 `
