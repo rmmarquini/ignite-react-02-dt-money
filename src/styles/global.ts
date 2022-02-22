@@ -78,6 +78,17 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: center;
 
+    opacity: 0;
+    transition: all .5s ease;
+
+  }
+
+  .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+
+  .ReactModal__Overlay--before-close {
+    opacity: 0;
   }
 
   .react-modal-content {

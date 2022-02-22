@@ -37,6 +37,7 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
 
   return (
     <Modal
+      closeTimeoutMS={300}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       overlayClassName="react-modal-overlay"
